@@ -15,8 +15,7 @@
       <nav class="topline" aria-label="Sections">
         <a href="#overview">Overview</a>
         <a href="#scorecard">Scorecard</a>
-        <a href="#examples">Examples</a>
-        <a href="#expansion">New assets</a>
+        <a href="#results">Results</a>
         <a href="#takeaways">Takeaways</a>
       </nav>
       <div class="hero" id="overview">
@@ -24,9 +23,10 @@
           <p class="eyebrow">Blender MCP benchmark review</p>
           <h1>Codex 3D Reconstruction Results</h1>
           <p class="lede">
-            This page reviews four original object-remodeling tasks and expands the benchmark with
-            five new source assets, including a stylized character. Targets are reconstructed twice: once
-            from a single material-preview render, and once from six orthographic views.
+            This page reviews nine object-remodeling tasks, including canonical household objects,
+            mechanical forms, repeated structures, an instrument, and a stylized character. Each target
+            is reconstructed twice: once from a single material-preview render, and once from six
+            orthographic views.
           </p>
         </div>
         <figure class="hero-media">
@@ -46,8 +46,8 @@
               <code>oneshot/</code> folder contains single rendered references, and
               <code>muti-view-6-ortho/</code> contains front, back, left, right, top, and bottom
               orthographic inputs. Generated results live in <code>ai-oneshot/</code> and
-              <code>ai-mv6o/</code>. The newest sources are abacus, acorn, acoustic guitar,
-              anchor, and a stylized anime character.
+              <code>ai-mv6o/</code>. The full set is wooden chair, teapot, teacup, spoon, abacus,
+              acorn, acoustic guitar, anchor, and a stylized anime character.
             </p>
           </article>
           <article>
@@ -63,8 +63,8 @@
             <p>
               One-shot reconstruction produced stronger canonical silhouettes for the cup, teapot,
               and chair. The six-view run helped most on the spoon, but it also introduced
-              orthographic-view artifacts and occasional over-modeling. The expansion adds more
-              varied topology, scale, repetition, and character-shape challenges.
+              orthographic-view artifacts and occasional over-modeling. The full set adds varied
+              topology, scale, repetition, thin details, symmetry, and character-shape challenges.
             </p>
           </article>
         </div>
@@ -155,10 +155,10 @@
         </div>
       </section>
 
-      <section class="content" id="examples">
+      <section class="content" id="results">
         <div class="section-heading">
           <p class="eyebrow">Per-object review</p>
-          <h2>Examples</h2>
+          <h2>Results</h2>
         </div>
 
         <article class="example" id="wooden-chair">
@@ -404,158 +404,8 @@
             <img src="muti-view-6-ortho/spoon/spoon_bottom.png" alt="Spoon bottom orthographic input">
           </div>
         </article>
-      </section>
 
-      <section class="content" id="expansion">
-        <div class="section-heading">
-          <p class="eyebrow">Expansion queue</p>
-          <h2>New Assets</h2>
-        </div>
-        <p class="section-note">
-          These assets were added as an expansion set. They now have source geometry, clean
-          one-shot reference renders, and six orthographic views. The character source includes
-          explicit Sketchfab attribution.
-        </p>
-
-        <div class="new-asset-grid">
-          <article class="new-asset" id="abacus">
-            <div class="new-asset-copy">
-              <h3>Abacus</h3>
-              <p>
-                A structured counting frame with repeated beads and parallel rods. This is a good
-                test for repetition, alignment, spacing, and whether an agent can preserve many
-                similar elements without collapsing them into texture.
-              </p>
-              <p class="metric">5,840 vertices, 4,940 faces</p>
-              <a href="source/abacus.obj">Source .obj</a>
-            </div>
-            <figure>
-              <img src="oneshot/abacus_material_preview.png" alt="Abacus one-shot reference input">
-              <figcaption>One-shot input</figcaption>
-            </figure>
-            <div class="ortho-strip" aria-label="Abacus six orthographic inputs">
-              <img src="muti-view-6-ortho/abacus/abacus_front.png" alt="Abacus front orthographic input">
-              <img src="muti-view-6-ortho/abacus/abacus_back.png" alt="Abacus back orthographic input">
-              <img src="muti-view-6-ortho/abacus/abacus_left.png" alt="Abacus left orthographic input">
-              <img src="muti-view-6-ortho/abacus/abacus_right.png" alt="Abacus right orthographic input">
-              <img src="muti-view-6-ortho/abacus/abacus_top.png" alt="Abacus top orthographic input">
-              <img src="muti-view-6-ortho/abacus/abacus_bottom.png" alt="Abacus bottom orthographic input">
-            </div>
-          </article>
-
-          <article class="new-asset" id="acorn">
-            <div class="new-asset-copy">
-              <h3>Acorn</h3>
-              <p>
-                A compact organic object with a cap/body split, faceted silhouette, and short stem.
-                It should reveal how well the agent handles simple but non-mechanical rounded
-                forms.
-              </p>
-              <p class="metric">354 vertices, 352 faces</p>
-              <a href="source/acorn.obj">Source .obj</a>
-            </div>
-            <figure>
-              <img src="oneshot/acorn_material_preview.png" alt="Acorn one-shot reference input">
-              <figcaption>One-shot input</figcaption>
-            </figure>
-            <div class="ortho-strip" aria-label="Acorn six orthographic inputs">
-              <img src="muti-view-6-ortho/acorn/acorn_front.png" alt="Acorn front orthographic input">
-              <img src="muti-view-6-ortho/acorn/acorn_back.png" alt="Acorn back orthographic input">
-              <img src="muti-view-6-ortho/acorn/acorn_left.png" alt="Acorn left orthographic input">
-              <img src="muti-view-6-ortho/acorn/acorn_right.png" alt="Acorn right orthographic input">
-              <img src="muti-view-6-ortho/acorn/acorn_top.png" alt="Acorn top orthographic input">
-              <img src="muti-view-6-ortho/acorn/acorn_bottom.png" alt="Acorn bottom orthographic input">
-            </div>
-          </article>
-
-          <article class="new-asset" id="acoustic-guitar">
-            <div class="new-asset-copy">
-              <h3>Acoustic Guitar</h3>
-              <p>
-                A tall, thin instrument with a broad body, narrow neck, headstock, tuning pegs,
-                strings, bridge, and sound hole. It is the hardest new source because many thin
-                details must stay aligned across views.
-              </p>
-              <p class="metric">5,684 vertices, 5,706 faces</p>
-              <a href="source/acoustic_guitar.obj">Source .obj</a>
-            </div>
-            <figure>
-              <img src="oneshot/acoustic_guitar_material_preview.png" alt="Acoustic guitar one-shot reference input">
-              <figcaption>One-shot input</figcaption>
-            </figure>
-            <div class="ortho-strip" aria-label="Acoustic guitar six orthographic inputs">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_front.png" alt="Acoustic guitar front orthographic input">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_back.png" alt="Acoustic guitar back orthographic input">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_left.png" alt="Acoustic guitar left orthographic input">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_right.png" alt="Acoustic guitar right orthographic input">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_top.png" alt="Acoustic guitar top orthographic input">
-              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_bottom.png" alt="Acoustic guitar bottom orthographic input">
-            </div>
-          </article>
-
-          <article class="new-asset" id="anchor">
-            <div class="new-asset-copy">
-              <h3>Anchor</h3>
-              <p>
-                A mostly symmetrical object with a ring, crossbar, central shank, curved arms, and
-                pointed flukes. It should test symmetry, bevels, and clear separation between
-                curved and cylindrical parts.
-              </p>
-              <p class="metric">858 vertices, 878 faces</p>
-              <a href="source/anchor_01.obj">Source .obj</a>
-            </div>
-            <figure>
-              <img src="oneshot/anchor_01_material_preview.png" alt="Anchor one-shot reference input">
-              <figcaption>One-shot input</figcaption>
-            </figure>
-            <div class="ortho-strip" aria-label="Anchor six orthographic inputs">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_front.png" alt="Anchor front orthographic input">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_back.png" alt="Anchor back orthographic input">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_left.png" alt="Anchor left orthographic input">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_right.png" alt="Anchor right orthographic input">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_top.png" alt="Anchor top orthographic input">
-              <img src="muti-view-6-ortho/anchor_01/anchor_01_bottom.png" alt="Anchor bottom orthographic input">
-            </div>
-          </article>
-
-          <article class="new-asset" id="anime-girl-casual-outfit">
-            <div class="new-asset-copy">
-              <h3>Anime Girl Casual Outfit</h3>
-              <p>
-                A stylized character in a T-pose with anime facial proportions, long brown hair,
-                white crop top, black athletic shorts, bare legs, and sneakers. This is the largest
-                topology jump in the benchmark and tests whether an agent can simplify a detailed
-                character into a coherent procedural reconstruction.
-              </p>
-              <p class="metric">95,128 vertices, 126,768 faces</p>
-              <a href="source/anime_girl_casual_outfit__stylized_3d_character.glb">Source .glb</a>
-              <a href="https://sketchfab.com/3d-models/anime-girl-casual-outfit-stylized-3d-character-c9e4a8b3ebdc4677b8ef25a7d59cf038">
-                Sketchfab attribution
-              </a>
-            </div>
-            <figure>
-              <img src="oneshot/anime_girl_casual_outfit_material_preview.png" alt="Anime girl casual outfit one-shot reference input">
-              <figcaption>One-shot input</figcaption>
-            </figure>
-            <div class="ortho-strip" aria-label="Anime girl casual outfit six orthographic inputs">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_front.png" alt="Anime girl casual outfit front orthographic input">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_back.png" alt="Anime girl casual outfit back orthographic input">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_left.png" alt="Anime girl casual outfit left orthographic input">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_right.png" alt="Anime girl casual outfit right orthographic input">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_top.png" alt="Anime girl casual outfit top orthographic input">
-              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_bottom.png" alt="Anime girl casual outfit bottom orthographic input">
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="content" id="new-results">
-        <div class="section-heading">
-          <p class="eyebrow">New run results</p>
-          <h2>Expansion Outputs</h2>
-        </div>
-
-        <article class="example" id="abacus-results">
+        <article class="example" id="abacus">
           <div class="example-title">
             <div>
               <h3>Abacus</h3>
@@ -604,9 +454,18 @@
               <a href="ai-mv6o/abacus/abacus_recreated.blend">Open generated .blend</a>
             </section>
           </div>
+
+          <div class="ortho-strip" aria-label="Abacus six orthographic inputs">
+            <img src="muti-view-6-ortho/abacus/abacus_front.png" alt="Abacus front orthographic input">
+            <img src="muti-view-6-ortho/abacus/abacus_back.png" alt="Abacus back orthographic input">
+            <img src="muti-view-6-ortho/abacus/abacus_left.png" alt="Abacus left orthographic input">
+            <img src="muti-view-6-ortho/abacus/abacus_right.png" alt="Abacus right orthographic input">
+            <img src="muti-view-6-ortho/abacus/abacus_top.png" alt="Abacus top orthographic input">
+            <img src="muti-view-6-ortho/abacus/abacus_bottom.png" alt="Abacus bottom orthographic input">
+          </div>
         </article>
 
-        <article class="example" id="acorn-results">
+        <article class="example" id="acorn">
           <div class="example-title">
             <div>
               <h3>Acorn</h3>
@@ -654,9 +513,18 @@
               <a href="ai-mv6o/acorn/acorn_recreated.blend">Open generated .blend</a>
             </section>
           </div>
+
+          <div class="ortho-strip" aria-label="Acorn six orthographic inputs">
+            <img src="muti-view-6-ortho/acorn/acorn_front.png" alt="Acorn front orthographic input">
+            <img src="muti-view-6-ortho/acorn/acorn_back.png" alt="Acorn back orthographic input">
+            <img src="muti-view-6-ortho/acorn/acorn_left.png" alt="Acorn left orthographic input">
+            <img src="muti-view-6-ortho/acorn/acorn_right.png" alt="Acorn right orthographic input">
+            <img src="muti-view-6-ortho/acorn/acorn_top.png" alt="Acorn top orthographic input">
+            <img src="muti-view-6-ortho/acorn/acorn_bottom.png" alt="Acorn bottom orthographic input">
+          </div>
         </article>
 
-        <article class="example" id="acoustic-guitar-results">
+        <article class="example" id="acoustic-guitar">
           <div class="example-title">
             <div>
               <h3>Acoustic Guitar</h3>
@@ -705,9 +573,18 @@
               <a href="ai-mv6o/acoustic_guitar/acoustic_guitar_recreated.blend">Open generated .blend</a>
             </section>
           </div>
+
+          <div class="ortho-strip" aria-label="Acoustic guitar six orthographic inputs">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_front.png" alt="Acoustic guitar front orthographic input">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_back.png" alt="Acoustic guitar back orthographic input">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_left.png" alt="Acoustic guitar left orthographic input">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_right.png" alt="Acoustic guitar right orthographic input">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_top.png" alt="Acoustic guitar top orthographic input">
+            <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_bottom.png" alt="Acoustic guitar bottom orthographic input">
+          </div>
         </article>
 
-        <article class="example" id="anchor-results">
+        <article class="example" id="anchor">
           <div class="example-title">
             <div>
               <h3>Anchor</h3>
@@ -754,9 +631,18 @@
               <a href="ai-mv6o/anchor_01/anchor_01_recreated.blend">Open generated .blend</a>
             </section>
           </div>
+
+          <div class="ortho-strip" aria-label="Anchor six orthographic inputs">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_front.png" alt="Anchor front orthographic input">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_back.png" alt="Anchor back orthographic input">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_left.png" alt="Anchor left orthographic input">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_right.png" alt="Anchor right orthographic input">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_top.png" alt="Anchor top orthographic input">
+            <img src="muti-view-6-ortho/anchor_01/anchor_01_bottom.png" alt="Anchor bottom orthographic input">
+          </div>
         </article>
 
-        <article class="example" id="anime-girl-results">
+        <article class="example" id="anime-girl-casual-outfit">
           <div class="example-title">
             <div>
               <h3>Anime Girl Casual Outfit</h3>
@@ -812,6 +698,15 @@
               </p>
               <a href="ai-mv6o/anime_girl_casual_outfit/anime_girl_casual_outfit_recreated.blend">Open generated .blend</a>
             </section>
+          </div>
+
+          <div class="ortho-strip" aria-label="Anime girl casual outfit six orthographic inputs">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_front.png" alt="Anime girl casual outfit front orthographic input">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_back.png" alt="Anime girl casual outfit back orthographic input">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_left.png" alt="Anime girl casual outfit left orthographic input">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_right.png" alt="Anime girl casual outfit right orthographic input">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_top.png" alt="Anime girl casual outfit top orthographic input">
+            <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_bottom.png" alt="Anime girl casual outfit bottom orthographic input">
           </div>
         </article>
       </section>
