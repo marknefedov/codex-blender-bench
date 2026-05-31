@@ -1,12 +1,12 @@
 # Codex Blender Reconstruction Benchmark
 
-This repository is a small visual benchmark for agent-driven Blender reconstruction. It compares Codex-generated Blender scenes against four source objects: a wooden chair, teapot, teacup, and spoon.
+This repository is a visual benchmark for agent-driven Blender reconstruction. It compares Codex-generated Blender scenes against source objects ranging from simple utensils to a stylized character.
 
 The GitHub Pages site is in `index.html` with styling in `styles.css`. It reviews each reconstruction, shows the input references, and links to the generated `.blend` files.
 
 ## Repository Layout
 
-- `source/`: ground-truth source geometry (`.blend` or `.obj`)
+- `source/`: ground-truth source geometry (`.blend`, `.obj`, or `.glb`)
 - `oneshot/`: single material-preview input images
 - `muti-view-6-ortho/`: six orthographic input views per object
 - `ai-oneshot/`: agent outputs generated from the single-image prompt
@@ -18,7 +18,7 @@ The GitHub Pages site is in `index.html` with styling in `styles.css`. It review
 
 The report site itself has no external Python package dependencies. To reproduce the modeling benchmark, install:
 
-- Git LFS, because `.obj` and `.blend` assets are tracked through LFS
+- Git LFS, because `.obj`, `.blend`, and `.glb` assets are tracked through LFS
 - Blender with the Blender MCP add-on enabled
 - An agent that can use Blender MCP tools, such as Codex Desktop with Blender MCP configured
 - Python 3 if you want to preview the static site locally
@@ -69,6 +69,10 @@ After generation, review the result using:
 - Blender scene metadata such as object count, mesh count, material count, and total vertices/faces
 
 The current report was written from the provided renders plus read-only Blender metadata inspection. No mesh or image data was edited during the review.
+
+## Asset Attribution
+
+- `source/anime_girl_casual_outfit__stylized_3d_character.glb`: [Anime Girl Casual Outfit - Stylized 3D Character](https://sketchfab.com/3d-models/anime-girl-casual-outfit-stylized-3d-character-c9e4a8b3ebdc4677b8ef25a7d59cf038) on Sketchfab.
 
 ## Publish With GitHub Pages
 
