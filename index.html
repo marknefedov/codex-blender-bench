@@ -16,6 +16,7 @@
         <a href="#overview">Overview</a>
         <a href="#scorecard">Scorecard</a>
         <a href="#examples">Examples</a>
+        <a href="#expansion">New assets</a>
         <a href="#takeaways">Takeaways</a>
       </nav>
       <div class="hero" id="overview">
@@ -23,9 +24,9 @@
           <p class="eyebrow">Blender MCP benchmark review</p>
           <h1>Codex 3D Reconstruction Results</h1>
           <p class="lede">
-            This page reviews four object-remodeling tasks: a wooden chair, teapot, teacup, and
-            spoon. Each target was reconstructed twice: once from a single material-preview render,
-            and once from six orthographic views.
+            This page reviews four original object-remodeling tasks and expands the benchmark with
+            five new source assets, including a stylized character. Targets are reconstructed twice: once
+            from a single material-preview render, and once from six orthographic views.
           </p>
         </div>
         <figure class="hero-media">
@@ -45,7 +46,8 @@
               <code>oneshot/</code> folder contains single rendered references, and
               <code>muti-view-6-ortho/</code> contains front, back, left, right, top, and bottom
               orthographic inputs. Generated results live in <code>ai-oneshot/</code> and
-              <code>ai-mv6o/</code>.
+              <code>ai-mv6o/</code>. The newest sources are abacus, acorn, acoustic guitar,
+              anchor, and a stylized anime character.
             </p>
           </article>
           <article>
@@ -61,7 +63,8 @@
             <p>
               One-shot reconstruction produced stronger canonical silhouettes for the cup, teapot,
               and chair. The six-view run helped most on the spoon, but it also introduced
-              orthographic-view artifacts and occasional over-modeling.
+              orthographic-view artifacts and occasional over-modeling. The expansion adds more
+              varied topology, scale, repetition, and character-shape challenges.
             </p>
           </article>
         </div>
@@ -110,6 +113,41 @@
                 <td>1,571 vertices, 1,555 faces</td>
                 <td>Flat, oversized bowl; boundary artifacts dominate.</td>
                 <td>Cleaner spoon silhouette and handle; bowl still too shallow.</td>
+                <td><span class="badge win">Six-view</span></td>
+              </tr>
+              <tr>
+                <td>Abacus</td>
+                <td>5,840 vertices, 4,940 faces</td>
+                <td>Strong repeated-bead structure; simplified frame and bead variation.</td>
+                <td>Cleaner orthographic alignment with five rods and split bead groups.</td>
+                <td><span class="badge win">Six-view</span></td>
+              </tr>
+              <tr>
+                <td>Acorn</td>
+                <td>354 vertices, 352 faces</td>
+                <td>Readable low-poly cap/body split with strong silhouette.</td>
+                <td>Closer frontal framing; still simplified surface detail.</td>
+                <td><span class="badge win">One-shot</span></td>
+              </tr>
+              <tr>
+                <td>Acoustic guitar</td>
+                <td>5,684 vertices, 5,706 faces</td>
+                <td>Identifies strings, neck, headstock, and sound hole, but body shape drifts.</td>
+                <td>More complete guitar grammar with cleaner outline and bridge detail.</td>
+                <td><span class="badge win">Six-view</span></td>
+              </tr>
+              <tr>
+                <td>Anchor</td>
+                <td>858 vertices, 878 faces</td>
+                <td>Strong anchor read with ring, stock, shank, arms, and flukes.</td>
+                <td>Similar structure with sharper flukes and more front-facing symmetry.</td>
+                <td><span class="badge win">Six-view</span></td>
+              </tr>
+              <tr>
+                <td>Anime girl casual outfit</td>
+                <td>95,128 vertices, 126,768 faces</td>
+                <td>Readable T-pose character; simplified limbs, hair, and outfit detail.</td>
+                <td>More centered and consistent; still procedural and low-detail.</td>
                 <td><span class="badge win">Six-view</span></td>
               </tr>
             </tbody>
@@ -364,6 +402,416 @@
             <img src="muti-view-6-ortho/spoon/spoon_right.png" alt="Spoon right orthographic input">
             <img src="muti-view-6-ortho/spoon/spoon_top.png" alt="Spoon top orthographic input">
             <img src="muti-view-6-ortho/spoon/spoon_bottom.png" alt="Spoon bottom orthographic input">
+          </div>
+        </article>
+      </section>
+
+      <section class="content" id="expansion">
+        <div class="section-heading">
+          <p class="eyebrow">Expansion queue</p>
+          <h2>New Assets</h2>
+        </div>
+        <p class="section-note">
+          These assets were added as an expansion set. They now have source geometry, clean
+          one-shot reference renders, and six orthographic views. The character source includes
+          explicit Sketchfab attribution.
+        </p>
+
+        <div class="new-asset-grid">
+          <article class="new-asset" id="abacus">
+            <div class="new-asset-copy">
+              <h3>Abacus</h3>
+              <p>
+                A structured counting frame with repeated beads and parallel rods. This is a good
+                test for repetition, alignment, spacing, and whether an agent can preserve many
+                similar elements without collapsing them into texture.
+              </p>
+              <p class="metric">5,840 vertices, 4,940 faces</p>
+              <a href="source/abacus.obj">Source .obj</a>
+            </div>
+            <figure>
+              <img src="oneshot/abacus_material_preview.png" alt="Abacus one-shot reference input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <div class="ortho-strip" aria-label="Abacus six orthographic inputs">
+              <img src="muti-view-6-ortho/abacus/abacus_front.png" alt="Abacus front orthographic input">
+              <img src="muti-view-6-ortho/abacus/abacus_back.png" alt="Abacus back orthographic input">
+              <img src="muti-view-6-ortho/abacus/abacus_left.png" alt="Abacus left orthographic input">
+              <img src="muti-view-6-ortho/abacus/abacus_right.png" alt="Abacus right orthographic input">
+              <img src="muti-view-6-ortho/abacus/abacus_top.png" alt="Abacus top orthographic input">
+              <img src="muti-view-6-ortho/abacus/abacus_bottom.png" alt="Abacus bottom orthographic input">
+            </div>
+          </article>
+
+          <article class="new-asset" id="acorn">
+            <div class="new-asset-copy">
+              <h3>Acorn</h3>
+              <p>
+                A compact organic object with a cap/body split, faceted silhouette, and short stem.
+                It should reveal how well the agent handles simple but non-mechanical rounded
+                forms.
+              </p>
+              <p class="metric">354 vertices, 352 faces</p>
+              <a href="source/acorn.obj">Source .obj</a>
+            </div>
+            <figure>
+              <img src="oneshot/acorn_material_preview.png" alt="Acorn one-shot reference input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <div class="ortho-strip" aria-label="Acorn six orthographic inputs">
+              <img src="muti-view-6-ortho/acorn/acorn_front.png" alt="Acorn front orthographic input">
+              <img src="muti-view-6-ortho/acorn/acorn_back.png" alt="Acorn back orthographic input">
+              <img src="muti-view-6-ortho/acorn/acorn_left.png" alt="Acorn left orthographic input">
+              <img src="muti-view-6-ortho/acorn/acorn_right.png" alt="Acorn right orthographic input">
+              <img src="muti-view-6-ortho/acorn/acorn_top.png" alt="Acorn top orthographic input">
+              <img src="muti-view-6-ortho/acorn/acorn_bottom.png" alt="Acorn bottom orthographic input">
+            </div>
+          </article>
+
+          <article class="new-asset" id="acoustic-guitar">
+            <div class="new-asset-copy">
+              <h3>Acoustic Guitar</h3>
+              <p>
+                A tall, thin instrument with a broad body, narrow neck, headstock, tuning pegs,
+                strings, bridge, and sound hole. It is the hardest new source because many thin
+                details must stay aligned across views.
+              </p>
+              <p class="metric">5,684 vertices, 5,706 faces</p>
+              <a href="source/acoustic_guitar.obj">Source .obj</a>
+            </div>
+            <figure>
+              <img src="oneshot/acoustic_guitar_material_preview.png" alt="Acoustic guitar one-shot reference input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <div class="ortho-strip" aria-label="Acoustic guitar six orthographic inputs">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_front.png" alt="Acoustic guitar front orthographic input">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_back.png" alt="Acoustic guitar back orthographic input">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_left.png" alt="Acoustic guitar left orthographic input">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_right.png" alt="Acoustic guitar right orthographic input">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_top.png" alt="Acoustic guitar top orthographic input">
+              <img src="muti-view-6-ortho/acoustic_guitar/acoustic_guitar_bottom.png" alt="Acoustic guitar bottom orthographic input">
+            </div>
+          </article>
+
+          <article class="new-asset" id="anchor">
+            <div class="new-asset-copy">
+              <h3>Anchor</h3>
+              <p>
+                A mostly symmetrical object with a ring, crossbar, central shank, curved arms, and
+                pointed flukes. It should test symmetry, bevels, and clear separation between
+                curved and cylindrical parts.
+              </p>
+              <p class="metric">858 vertices, 878 faces</p>
+              <a href="source/anchor_01.obj">Source .obj</a>
+            </div>
+            <figure>
+              <img src="oneshot/anchor_01_material_preview.png" alt="Anchor one-shot reference input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <div class="ortho-strip" aria-label="Anchor six orthographic inputs">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_front.png" alt="Anchor front orthographic input">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_back.png" alt="Anchor back orthographic input">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_left.png" alt="Anchor left orthographic input">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_right.png" alt="Anchor right orthographic input">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_top.png" alt="Anchor top orthographic input">
+              <img src="muti-view-6-ortho/anchor_01/anchor_01_bottom.png" alt="Anchor bottom orthographic input">
+            </div>
+          </article>
+
+          <article class="new-asset" id="anime-girl-casual-outfit">
+            <div class="new-asset-copy">
+              <h3>Anime Girl Casual Outfit</h3>
+              <p>
+                A stylized character in a T-pose with anime facial proportions, long brown hair,
+                white crop top, black athletic shorts, bare legs, and sneakers. This is the largest
+                topology jump in the benchmark and tests whether an agent can simplify a detailed
+                character into a coherent procedural reconstruction.
+              </p>
+              <p class="metric">95,128 vertices, 126,768 faces</p>
+              <a href="source/anime_girl_casual_outfit__stylized_3d_character.glb">Source .glb</a>
+              <a href="https://sketchfab.com/3d-models/anime-girl-casual-outfit-stylized-3d-character-c9e4a8b3ebdc4677b8ef25a7d59cf038">
+                Sketchfab attribution
+              </a>
+            </div>
+            <figure>
+              <img src="oneshot/anime_girl_casual_outfit_material_preview.png" alt="Anime girl casual outfit one-shot reference input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <div class="ortho-strip" aria-label="Anime girl casual outfit six orthographic inputs">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_front.png" alt="Anime girl casual outfit front orthographic input">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_back.png" alt="Anime girl casual outfit back orthographic input">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_left.png" alt="Anime girl casual outfit left orthographic input">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_right.png" alt="Anime girl casual outfit right orthographic input">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_top.png" alt="Anime girl casual outfit top orthographic input">
+              <img src="muti-view-6-ortho/anime_girl_casual_outfit/anime_girl_casual_outfit_bottom.png" alt="Anime girl casual outfit bottom orthographic input">
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content" id="new-results">
+        <div class="section-heading">
+          <p class="eyebrow">New run results</p>
+          <h2>Expansion Outputs</h2>
+        </div>
+
+        <article class="example" id="abacus-results">
+          <div class="example-title">
+            <div>
+              <h3>Abacus</h3>
+              <p>
+                The first new reconstruction target uses repeated beads, parallel rods, and a
+                simple side-frame structure. It tests whether a modeling agent can preserve count,
+                spacing, and alignment without importing the source mesh.
+              </p>
+            </div>
+            <a class="asset-link" href="source/abacus.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/abacus_material_preview.png" alt="Abacus one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/abacus_recreation_render.png" alt="Abacus one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/abacus/abacus_final_render.png" alt="Abacus six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot abacus captures the important part grammar: side supports, top rail,
+                horizontal rods, and repeated bead groups. It reads correctly, though the render is
+                cropped close and the source's exact five-row layout is interpreted procedurally
+                rather than copied.
+              </p>
+              <a href="ai-oneshot/abacus_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view output is more frontally organized and preserves the five rod rows
+                clearly. Beads are simplified ellipsoids and the wooden side posts are blockier than
+                the source, but the result is coherent and useful as a reconstruction baseline.
+              </p>
+              <a href="ai-mv6o/abacus/abacus_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+        </article>
+
+        <article class="example" id="acorn-results">
+          <div class="example-title">
+            <div>
+              <h3>Acorn</h3>
+              <p>
+                The acorn target is compact and mostly radial, with a low-poly cap, dark nut body,
+                lip band, pointed bottom, and short angled stem. It is a useful contrast to the
+                more mechanical targets.
+              </p>
+            </div>
+            <a class="asset-link" href="source/acorn.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/acorn_material_preview.png" alt="Acorn one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/acorn_recreation_render.png" alt="Acorn one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/acorn/acorn_final_render.png" alt="Acorn six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot version captures the acorn's main stacked structure: dark lower nut,
+                broad lighter cap, lip shadow, faceted sides, and short stem. It exaggerates the
+                cap as a cleaner geometric cone, but the object identity is clear.
+              </p>
+              <a href="ai-oneshot/acorn_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view version is framed more like a reference sheet result and keeps the
+                cap/body separation crisp. It remains procedural and simplified, with low-poly
+                facets standing in for the source's subtler organic surface.
+              </p>
+              <a href="ai-mv6o/acorn/acorn_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+        </article>
+
+        <article class="example" id="acoustic-guitar-results">
+          <div class="example-title">
+            <div>
+              <h3>Acoustic Guitar</h3>
+              <p>
+                The guitar adds thin strings, small tuning hardware, a tall neck, sound hole,
+                bridge, and a broad resonant body. It is the most detail-heavy new asset.
+              </p>
+            </div>
+            <a class="asset-link" href="source/acoustic_guitar.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/acoustic_guitar_material_preview.png" alt="Acoustic guitar one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/acoustic_guitar_recreation_render.png" alt="Acoustic guitar one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/acoustic_guitar/acoustic_guitar_final_render.png" alt="Acoustic guitar six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot output gets the instrument identity right: strings, neck, frets,
+                headstock, tuning pegs, bridge, and sound hole are all represented. The body becomes
+                too hourglass-like and upright, and the render includes a simple floor plane, but
+                the part vocabulary is strong for a single image.
+              </p>
+              <a href="ai-oneshot/acoustic_guitar_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view reconstruction improves the full-body outline and uses more complete
+                edge binding, rosette, bridge, and peg details. It still relies on procedural
+                surfaces rather than true hollow construction, but it is a cleaner benchmark target
+                than the one-shot version.
+              </p>
+              <a href="ai-mv6o/acoustic_guitar/acoustic_guitar_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+        </article>
+
+        <article class="example" id="anchor-results">
+          <div class="example-title">
+            <div>
+              <h3>Anchor</h3>
+              <p>
+                The anchor target is mostly symmetrical and metallic, with a top ring, horizontal
+                stock, central shank, curved arms, and pointed flukes.
+              </p>
+            </div>
+            <a class="asset-link" href="source/anchor_01.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/anchor_01_material_preview.png" alt="Anchor one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/anchor_01_recreation_render.png" alt="Anchor one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/anchor_01/anchor_01_final_render.png" alt="Anchor six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot anchor is a strong semantic match. It reconstructs the ring, crossbar,
+                center shank, curved arms, collars, and pointed flukes. Some curvature is simplified
+                into primitive arcs and planar fluke surfaces, but the result reads clearly.
+              </p>
+              <a href="ai-oneshot/anchor_01_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view version keeps the same part structure with a more frontal, symmetrical
+                presentation and sharper fluke plates. It is still procedural rather than forged,
+                but it preserves the major silhouette cues across the orthographic references.
+              </p>
+              <a href="ai-mv6o/anchor_01/anchor_01_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+        </article>
+
+        <article class="example" id="anime-girl-results">
+          <div class="example-title">
+            <div>
+              <h3>Anime Girl Casual Outfit</h3>
+              <p>
+                The character target is a detailed stylized human in a T-pose, with long brown
+                hair, large anime eyes, a white crop top, black athletic shorts, bare legs, and
+                sneakers. The source asset is attributed to the linked Sketchfab model.
+              </p>
+            </div>
+            <div class="asset-links">
+              <a class="asset-link" href="source/anime_girl_casual_outfit__stylized_3d_character.glb">Source .glb</a>
+              <a class="asset-link" href="https://sketchfab.com/3d-models/anime-girl-casual-outfit-stylized-3d-character-c9e4a8b3ebdc4677b8ef25a7d59cf038">
+                Attribution
+              </a>
+            </div>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/anime_girl_casual_outfit_material_preview.png" alt="Anime girl casual outfit one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/anime_girl_casual_outfit_recreation_render.png" alt="Anime girl casual outfit one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/anime_girl_casual_outfit/anime_girl_casual_outfit_final_render.png" alt="Anime girl casual outfit six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot reconstruction identifies the major character cues: T-pose arms, head
+                and neck, large eyes, long hair mass, white top, black shorts, legs, and shoes. It
+                is intentionally procedural and far simpler than the source, with cylindrical limbs,
+                blocky hair locks, approximate clothing boundaries, and no fine facial or fabric
+                detail.
+              </p>
+              <a href="ai-oneshot/anime_girl_casual_outfit_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view reconstruction is more centered and consistent as a benchmark render.
+                It keeps the face, hair curtain, outstretched arms, outfit blocks, shoes, and
+                simplified body proportions readable from the main view. The result still compresses
+                the original character into primitives, so hands, hair strands, laces, folds, and
+                material nuance remain approximations.
+              </p>
+              <a href="ai-mv6o/anime_girl_casual_outfit/anime_girl_casual_outfit_recreated.blend">Open generated .blend</a>
+            </section>
           </div>
         </article>
       </section>

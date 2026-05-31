@@ -190,6 +190,8 @@ h4 {
 .review-grid p,
 .takeaway-grid p,
 .example-title p,
+.new-asset p,
+.section-note,
 footer p {
   margin: 0.85rem 0 0;
   color: var(--muted);
@@ -264,6 +266,11 @@ tbody tr:last-child td {
   background: #ccebe6;
 }
 
+.badge.pending {
+  color: #543615;
+  background: #f1dfbf;
+}
+
 .example {
   margin-top: 2.4rem;
   padding-top: 2.4rem;
@@ -292,6 +299,13 @@ tbody tr:last-child td {
   font-size: 0.92rem;
 }
 
+.asset-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
 .comparison-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -304,6 +318,7 @@ figure {
 
 .comparison-grid figure,
 .review-grid section,
+.new-asset,
 .takeaway-grid article {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -341,6 +356,51 @@ figure {
   font-weight: 700;
 }
 
+.section-note {
+  max-width: 860px;
+  margin-bottom: 1.35rem;
+}
+
+.new-asset-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.new-asset {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.7fr) minmax(280px, 1fr);
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.new-asset-copy {
+  align-self: center;
+  padding: 0.25rem;
+}
+
+.new-asset-copy a {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 700;
+}
+
+.new-asset figure img {
+  aspect-ratio: 7 / 5;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #dfe5df;
+}
+
+.new-asset .ortho-strip {
+  grid-column: 1 / -1;
+  margin-top: 0;
+}
+
+.metric {
+  color: #3d4842;
+  font-weight: 750;
+}
+
 .ortho-strip {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -373,6 +433,7 @@ footer {
   .intro-grid,
   .comparison-grid,
   .review-grid,
+  .new-asset,
   .takeaway-grid {
     grid-template-columns: 1fr;
   }
@@ -395,6 +456,10 @@ footer {
     margin-top: 1rem;
   }
 
+  .asset-links {
+    justify-content: flex-start;
+  }
+
   .ortho-strip {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -413,6 +478,7 @@ footer {
 
   .intro-grid article,
   .review-grid section,
+  .new-asset,
   .takeaway-grid article {
     padding: 1rem;
   }
