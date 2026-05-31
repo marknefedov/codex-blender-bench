@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Codex Blender Reconstruction Benchmark</title>
+    <meta
+      name="description"
+      content="A visual review of Codex Blender reconstruction results from one-shot and six-view orthographic inputs."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="topline" aria-label="Sections">
+        <a href="#overview">Overview</a>
+        <a href="#scorecard">Scorecard</a>
+        <a href="#examples">Examples</a>
+        <a href="#takeaways">Takeaways</a>
+      </nav>
+      <div class="hero" id="overview">
+        <div>
+          <p class="eyebrow">Blender MCP benchmark review</p>
+          <h1>Codex 3D Reconstruction Results</h1>
+          <p class="lede">
+            This page reviews four object-remodeling tasks: a wooden chair, teapot, teacup, and
+            spoon. Each target was reconstructed twice: once from a single material-preview render,
+            and once from six orthographic views.
+          </p>
+        </div>
+        <figure class="hero-media">
+          <img src="oneshot/wooden_chair_material_preview.png" alt="Ground-truth wooden chair material preview">
+          <figcaption>Example source preview used for the one-shot task.</figcaption>
+        </figure>
+      </div>
+    </header>
+
+    <main>
+      <section class="band">
+        <div class="intro-grid">
+          <article>
+            <h2>Dataset Layout</h2>
+            <p>
+              The <code>source/</code> folder contains the ground-truth geometry. The
+              <code>oneshot/</code> folder contains single rendered references, and
+              <code>muti-view-6-ortho/</code> contains front, back, left, right, top, and bottom
+              orthographic inputs. Generated results live in <code>ai-oneshot/</code> and
+              <code>ai-mv6o/</code>.
+            </p>
+          </article>
+          <article>
+            <h2>Review Method</h2>
+            <p>
+              The review is based on the provided renders plus read-only Blender scene metadata:
+              object counts, mesh counts, material counts, and vertex/face totals. No mesh or image
+              assets were edited during this pass.
+            </p>
+          </article>
+          <article>
+            <h2>Overall Pattern</h2>
+            <p>
+              One-shot reconstruction produced stronger canonical silhouettes for the cup, teapot,
+              and chair. The six-view run helped most on the spoon, but it also introduced
+              orthographic-view artifacts and occasional over-modeling.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content" id="scorecard">
+        <div class="section-heading">
+          <p class="eyebrow">At a glance</p>
+          <h2>Scorecard</h2>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Object</th>
+                <th>Source complexity</th>
+                <th>One-shot result</th>
+                <th>Six-view result</th>
+                <th>Best reconstruction</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Wooden chair</td>
+                <td>172 vertices, 146 faces</td>
+                <td>Recognizable chair; many primitives; simplified grain.</td>
+                <td>Thicker, more textured, but back-heavy and proportionally off.</td>
+                <td><span class="badge win">One-shot</span></td>
+              </tr>
+              <tr>
+                <td>Teapot</td>
+                <td>3,241 vertices, 3,464 faces</td>
+                <td>Strong body/lid/spout/handle read; clean but simplified.</td>
+                <td>Captures width and rings, with extra pads and a kinked spout.</td>
+                <td><span class="badge win">One-shot</span></td>
+              </tr>
+              <tr>
+                <td>Teacup</td>
+                <td>2,659 vertices, 2,600 faces</td>
+                <td>Best silhouette match; cup, saucer, rim, and handle are coherent.</td>
+                <td>Good rim and saucer detail, but faceting and weak handle structure.</td>
+                <td><span class="badge win">One-shot</span></td>
+              </tr>
+              <tr>
+                <td>Spoon</td>
+                <td>1,571 vertices, 1,555 faces</td>
+                <td>Flat, oversized bowl; boundary artifacts dominate.</td>
+                <td>Cleaner spoon silhouette and handle; bowl still too shallow.</td>
+                <td><span class="badge win">Six-view</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="content" id="examples">
+        <div class="section-heading">
+          <p class="eyebrow">Per-object review</p>
+          <h2>Examples</h2>
+        </div>
+
+        <article class="example" id="wooden-chair">
+          <div class="example-title">
+            <div>
+              <h3>Wooden Chair</h3>
+              <p>
+                The source is a compact rustic chair with rounded wooden members, a slatted seat,
+                three horizontal back rails, angled legs, and visible wood texture.
+              </p>
+            </div>
+            <a class="asset-link" href="source/wooden_chair.blend">Source .blend</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/wooden_chair_material_preview.png" alt="Wooden chair one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/wooden_chair_recreation_render.png" alt="Wooden chair one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/wooden_chair/wooden_chair_render.png" alt="Wooden chair six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                This is the most readable chair result. It reconstructs the seat, front legs, rear
+                uprights, back rails, and lower stretcher. The result uses 137 mesh objects and
+                1,492 vertices, which suggests a procedural assembly of simple parts rather than a
+                compact mesh. The main misses are material fidelity and organic construction: the
+                wood appears as light cylinders with dark scratch-like streaks, and the rustic
+                irregularity of the source is mostly flattened.
+              </p>
+              <a href="ai-oneshot/wooden_chair_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view result has fewer objects and a stronger procedural wood pattern, but
+                the modeled chair is over-thick and back-dominant. It adds an extra back rail and
+                turns several cylindrical members into large rectangular posts. As a 3D object it is
+                more textured, but as a reconstruction it drifts further from the source proportions.
+              </p>
+              <a href="ai-mv6o/wooden_chair/wooden_chair.blend">Open generated .blend</a>
+            </section>
+          </div>
+
+          <div class="ortho-strip" aria-label="Wooden chair six orthographic inputs">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_front.png" alt="Wooden chair front orthographic input">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_back.png" alt="Wooden chair back orthographic input">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_left.png" alt="Wooden chair left orthographic input">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_right.png" alt="Wooden chair right orthographic input">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_top.png" alt="Wooden chair top orthographic input">
+            <img src="muti-view-6-ortho/wooden_chair/wooden_chair_bottom.png" alt="Wooden chair bottom orthographic input">
+          </div>
+        </article>
+
+        <article class="example" id="teapot">
+          <div class="example-title">
+            <div>
+              <h3>Teapot</h3>
+              <p>
+                The source is a squat white teapot with an oval body, domed lid, small knob, loop
+                handle, spout, and subtle rim/foot-ring details.
+              </p>
+            </div>
+            <a class="asset-link" href="source/teapot.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/teapot_material_preview.png" alt="Teapot one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/teapot_recreation_render.png" alt="Teapot one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/teapot/teapot_final_render.png" alt="Teapot six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot teapot is a strong semantic reconstruction: the rounded body, lid,
+                knob, spout, handle, and foot ring all land in the expected places. It is smoother
+                and cleaner than the source preview, and the spout opening is simplified into a
+                blunt capped end, but the whole object reads correctly from normal viewing distance.
+              </p>
+              <a href="ai-oneshot/teapot_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view teapot uses 20 mesh objects and captures the flattened body and rim
+                stack, but it over-interprets view cues as extra side pads and a vertical front
+                feature. The spout bends into a segmented, kinked tube with a visible cap. It is
+                useful as a diagnostic example: more views did not automatically mean a cleaner
+                fused object.
+              </p>
+              <a href="ai-mv6o/teapot/teapot_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+
+          <div class="ortho-strip" aria-label="Teapot six orthographic inputs">
+            <img src="muti-view-6-ortho/teapot/teapot_front.png" alt="Teapot front orthographic input">
+            <img src="muti-view-6-ortho/teapot/teapot_back.png" alt="Teapot back orthographic input">
+            <img src="muti-view-6-ortho/teapot/teapot_left.png" alt="Teapot left orthographic input">
+            <img src="muti-view-6-ortho/teapot/teapot_right.png" alt="Teapot right orthographic input">
+            <img src="muti-view-6-ortho/teapot/teapot_top.png" alt="Teapot top orthographic input">
+            <img src="muti-view-6-ortho/teapot/teapot_bottom.png" alt="Teapot bottom orthographic input">
+          </div>
+        </article>
+
+        <article class="example" id="teacup">
+          <div class="example-title">
+            <div>
+              <h3>Teacup</h3>
+              <p>
+                The source is a white cup and saucer with a tapered cup wall, rounded lip, circular
+                saucer, small foot ring, and a simple C-shaped handle.
+              </p>
+            </div>
+            <a class="asset-link" href="source/teacup.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/teacup_material_preview.png" alt="Teacup one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/teacup_recreation_render.png" alt="Teacup one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/teacup/teacup_final_render.png" alt="Teacup six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                This is one of the best one-shot results. It captures the cup taper, open top,
+                saucer, handle, rim, inner shadow, and foot ring. The geometry is idealized and the
+                render is cropped tightly, but the reconstruction preserves the main object grammar
+                with few distracting artifacts.
+              </p>
+              <a href="ai-oneshot/teacup_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view teacup adds more mechanical rim and saucer detail, yet the result
+                becomes less faithful. The saucer turns faceted, and the handle is reduced to a
+                front-facing vertical cue rather than a clear loop. It demonstrates a common
+                six-view failure: local view evidence is preserved, but global 3D consistency
+                weakens.
+              </p>
+              <a href="ai-mv6o/teacup/teacup_reconstruction.blend">Open generated .blend</a>
+            </section>
+          </div>
+
+          <div class="ortho-strip" aria-label="Teacup six orthographic inputs">
+            <img src="muti-view-6-ortho/teacup/teacup_front.png" alt="Teacup front orthographic input">
+            <img src="muti-view-6-ortho/teacup/teacup_back.png" alt="Teacup back orthographic input">
+            <img src="muti-view-6-ortho/teacup/teacup_left.png" alt="Teacup left orthographic input">
+            <img src="muti-view-6-ortho/teacup/teacup_right.png" alt="Teacup right orthographic input">
+            <img src="muti-view-6-ortho/teacup/teacup_top.png" alt="Teacup top orthographic input">
+            <img src="muti-view-6-ortho/teacup/teacup_bottom.png" alt="Teacup bottom orthographic input">
+          </div>
+        </article>
+
+        <article class="example" id="spoon">
+          <div class="example-title">
+            <div>
+              <h3>Spoon</h3>
+              <p>
+                The source is a white ceramic spoon with a shallow oval bowl, smooth neck, tapered
+                handle, rounded end, and subtle concavity.
+              </p>
+            </div>
+            <a class="asset-link" href="source/spoon.obj">Source .obj</a>
+          </div>
+
+          <div class="comparison-grid">
+            <figure>
+              <img src="oneshot/spoon_material_preview.png" alt="Spoon one-shot input">
+              <figcaption>One-shot input</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-oneshot/spoon_final_render.png" alt="Spoon one-shot reconstruction render">
+              <figcaption>One-shot output</figcaption>
+            </figure>
+            <figure>
+              <img src="ai-mv6o/spoon/spoon_final_render.png" alt="Spoon six-view reconstruction render">
+              <figcaption>Six-view output</figcaption>
+            </figure>
+          </div>
+
+          <div class="review-grid">
+            <section>
+              <h4>One-shot review</h4>
+              <p>
+                The one-shot spoon is the weakest output in the set. It understands that the object
+                is long, white, and flat, but the bowl becomes an oversized plate-like polygon with
+                boundary artifacts and a decorative tan edge. The shallow concavity is indicated by
+                a grey patch rather than convincing bowl geometry.
+              </p>
+              <a href="ai-oneshot/spoon_recreation.blend">Open generated .blend</a>
+            </section>
+            <section>
+              <h4>Six-view review</h4>
+              <p>
+                The six-view spoon is the clearest improvement from added views. It has a cleaner
+                handle, neck, and bowl relationship, and the object reads as a single ceramic spoon.
+                The bowl remains too shallow and ends in a central dimple, but the silhouette is far
+                more controlled than the one-shot version.
+              </p>
+              <a href="ai-mv6o/spoon/spoon_recreated.blend">Open generated .blend</a>
+            </section>
+          </div>
+
+          <div class="ortho-strip" aria-label="Spoon six orthographic inputs">
+            <img src="muti-view-6-ortho/spoon/spoon_front.png" alt="Spoon front orthographic input">
+            <img src="muti-view-6-ortho/spoon/spoon_back.png" alt="Spoon back orthographic input">
+            <img src="muti-view-6-ortho/spoon/spoon_left.png" alt="Spoon left orthographic input">
+            <img src="muti-view-6-ortho/spoon/spoon_right.png" alt="Spoon right orthographic input">
+            <img src="muti-view-6-ortho/spoon/spoon_top.png" alt="Spoon top orthographic input">
+            <img src="muti-view-6-ortho/spoon/spoon_bottom.png" alt="Spoon bottom orthographic input">
+          </div>
+        </article>
+      </section>
+
+      <section class="content" id="takeaways">
+        <div class="section-heading">
+          <p class="eyebrow">What the benchmark shows</p>
+          <h2>Takeaways</h2>
+        </div>
+        <div class="takeaway-grid">
+          <article>
+            <h3>Canonical objects are handled better than subtle geometry.</h3>
+            <p>
+              The teapot and teacup benefit from familiar object priors: body, lid, handle, rim, and
+              saucer are reconstructed even from a single render. The spoon's shallow concavity is
+              much harder because it depends on small depth cues rather than named parts.
+            </p>
+          </article>
+          <article>
+            <h3>More views help when the main ambiguity is plan shape.</h3>
+            <p>
+              The six-view spoon improves because top and side information constrain the long handle
+              and bowl outline. That same extra information does not guarantee better results for
+              the chair, teacup, or teapot, where part fusion and proportion matter more.
+            </p>
+          </article>
+          <article>
+            <h3>View fusion is the main bottleneck.</h3>
+            <p>
+              Six-view outputs sometimes preserve orthographic cues as literal geometry: teapot
+              pads, teacup faceting, and stored reference planes/materials in the Blender files.
+              Better reconstruction would need stronger constraints for symmetry, continuity, and
+              part identity across views.
+            </p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Generated benchmark report for the local Codex Blender modeling run. Existing meshes and
+        image files are referenced in place and were not modified.
+      </p>
+    </footer>
+  </body>
+</html>
